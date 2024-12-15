@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Product</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      p {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+
+      .success-message {
+        color: #008000;
+      }
+
+      .error-message {
+        color: #ff0000;
+      }
+
+      .back-button {
+        display: inline-block;
+        background-color: #3498db;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        text-decoration: none;
+      }
+
+      .back-button:hover {
+        background-color: #2980b9;
+      }
+
+      button {
+        background-color: #2ecc71;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #27ae60;
+      }
+
+      label {
+        display: block;
+        margin-top: 15px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      {% if product %}
+      <h2>Edit Product - {{ product.id }}</h2>
+      <form
+        method="POST"
+        action="{{ url_for('admin_edit_product', product_id=product.id) }}"
+      >
+        <label for="name">Product Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value="{{ product.name }}"
+          required
+        />
+
+        <label for="price">Product Price:</label>
+        <input
+          type="text"
+          id="price"
+          name="price"
+          value="{{ product.price }}"
+          required
+        />
+
+        <button type="submit">Save Changes</button>
+      </form>
+      {% else %}
+      <p class="error-message">Product not found.</p>
+      {% endif %} {% if success %}
+      <p class="success-message">{{ success }}</p>
+      {% elif error %}
+      <p class="error-message">{{ error }}</p>
+      {% endif %}
+      <a href="{{ url_for('admin_dashboard') }}" class="back-button"
+        >Back to Admin Dashboard</a
+      >
+    </div>
+  </body>
+</html>

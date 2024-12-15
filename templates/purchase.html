@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+    </style>
+    <title>Toko Online XYZ - Pembelian Produk</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>Pembelian Produk</h2>
+      <hr />
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card product-card">
+            <img
+              src="{{ product.image_url }}"
+              class="card-img-top product-img"
+              alt="{{ product.name }}"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card product-card">
+            <div class="product-details">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">Harga: {{ product.price }}</p>
+              <p class="card-text specifications">
+                {{ product.specification }}
+              </p>
+            </div>
+          </div>
+          <hr />
+          <h4>Formulir Pembelian</h4>
+          <form method="POST" action="{{ url_for('complete_purchase') }}">
+            <input
+              type="hidden"
+              name="selectedProduct"
+              value="{{ product.id }}"
+            />
+            <div class="form-group">
+              <label for="quantity">Jumlah</label>
+              <input
+                type="number"
+                class="form-control"
+                id="quantity"
+                name="quantity"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="buyer_name">Nama Pembeli</label>
+              <input
+                type="text"
+                class="form-control"
+                id="buyer_name"
+                name="buyer_name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="shipping_address">Alamat Pengiriman</label>
+              <input
+                type="text"
+                class="form-control"
+                id="shipping_address"
+                name="shipping_address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="buyer_email">Email Pembeli</label>
+              <input
+                type="email"
+                class="form-control"
+                id="buyer_email"
+                name="buyer_email"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Beli Produk</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

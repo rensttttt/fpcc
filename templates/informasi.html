@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informasi Pembelian | Toko Online XYZ</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>Terima Kasih Telah Berbelanja di Toko Online XYZ</h2>
+        <p class="lead">Berikut adalah informasi pembelian Anda.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <div class="card-header">Detail Produk</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">Kategori: {{ product.category }}</p>
+              <p class="card-text">Harga: Rp{{ product.price }}</p>
+              <p class="card-text">Spesifikasi: {{ product.specification }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <h4 class="mb-3">Informasi Pengiriman</h4>
+          <form>
+            <div class="form-group">
+              <label for="inputName">Nama Pembeli</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName"
+                value="{{ session['transaction_info']['buyer_name'] }}"
+                readonly
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Alamat Pengiriman</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputAddress"
+                value="{{ session['transaction_info']['shipping_address'] }}"
+                readonly
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputEmail">Email Pembeli</label>
+              <input
+                type="email"
+                class="form-control"
+                id="inputEmail"
+                value="{{ session['transaction_info']['buyer_email'] }}"
+                readonly
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Kembali ke Beranda</a>
+        <a href="/products" class="btn btn-danger">Batalkan Pesanan</a>
+      </div>
+    </div>
+  </body>
+</html>
